@@ -4,11 +4,13 @@ import {
     BeforeUpdate,
     Column,
     Entity,
+    OneToMany,
     UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
+import { Board } from 'src/boards/entities/board.entity';
 
 export enum UserRole {
     Admin = 'Admin',
@@ -39,6 +41,9 @@ export class User extends CoreEntity {
 
     @UpdateDateColumn()
     lastLogin: string;
+
+    @OneToMany(() => Board, (board) => board.user)
+    boards: Board[];
 
     @BeforeInsert()
     @BeforeUpdate()

@@ -16,6 +16,8 @@ import { Verification } from './users/entities/verification.entity';
 import { CategoriesModule } from './categories/categories.module';
 import { Category } from './categories/entities/category.entity';
 import { SubCategory } from './categories/entities/subCategory.entity';
+import { Board } from './boards/entities/board.entity';
+import { BoardsModule } from './boards/boards.module';
 
 @Module({
     imports: [
@@ -32,7 +34,7 @@ import { SubCategory } from './categories/entities/subCategory.entity';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Category, SubCategory],
+            entities: [User, Verification, Category, SubCategory, Board],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -54,6 +56,7 @@ import { SubCategory } from './categories/entities/subCategory.entity';
         UsersModule,
         AuthModule,
         CategoriesModule,
+        BoardsModule,
     ],
     controllers: [],
     providers: [],
