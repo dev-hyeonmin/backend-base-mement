@@ -16,6 +16,13 @@ import { ErrorResponse } from 'src/common/swagger/errorResponse.decorator';
 import { UserNotFoundException } from 'src/common/errors';
 import { USER_NOT_FOUND } from 'src/common/errors.constants';
 
+/*
+ * GET    : getting data
+ * POST   : creating data
+ * PUT    : updating data
+ * DELETE : deleting data
+ */
+
 @Controller('users')
 export class UsersController {
     constructor(private readonly userService: UsersService) { }

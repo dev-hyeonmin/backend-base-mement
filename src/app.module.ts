@@ -13,6 +13,9 @@ import { TokenModule } from './token/token.module';
 import { TokenMiddleware } from './token/token.middleware';
 import { MailModule } from './mail/mail.module';
 import { Verification } from './users/entities/verification.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/entities/category.entity';
+import { SubCategory } from './categories/entities/subCategory.entity';
 
 @Module({
     imports: [
@@ -29,7 +32,7 @@ import { Verification } from './users/entities/verification.entity';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification],
+            entities: [User, Verification, Category, SubCategory],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -50,6 +53,7 @@ import { Verification } from './users/entities/verification.entity';
         }),
         UsersModule,
         AuthModule,
+        CategoriesModule,
     ],
     controllers: [],
     providers: [],

@@ -12,7 +12,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export enum UserRole {
     Admin = 'Admin',
-    Doctor = 'Doctor',
+    User = 'User',
 }
 
 @Entity()
@@ -31,7 +31,7 @@ export class User extends CoreEntity {
     @Column({ type: String })
     password: string;
 
-    @Column({ type: 'enum', enum: UserRole, default: UserRole.Doctor })
+    @Column({ type: 'enum', enum: UserRole, default: UserRole.User })
     role: UserRole;
 
     @Column({ type: Boolean, default: false })

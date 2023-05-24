@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AllowedRoles } from './roles.decorator';
+import { TokenInvaildException } from 'src/common/errors';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -24,7 +25,7 @@ export class AuthGuard implements CanActivate {
 
             return roles.includes(user.role);
         } else {
-            return false;
+            throw new TokenInvaildException;
         }
     }
 }

@@ -1,22 +1,32 @@
 import { HttpException } from "@nestjs/common";
-import { INVALID_VERIFICATION, TOKEN_EXPIRED, USER_NOT_FOUND } from "./errors.constants";
+import { DATA_NOT_FOUND, INVALID_VERIFICATION, TOKEN_EXPIRED, TOKEN_INVAILD, USER_NOT_FOUND } from "./errors.constants";
 
-export class ValidationException {
-    constructor(
-        message?: string
-    ) {
-        return new HttpException('Invalid verification.', INVALID_VERIFICATION);
+export class ValidationException extends HttpException {
+    constructor(message?: string) {
+        super('Invalid verification.', INVALID_VERIFICATION);
     }
 }
 
-export class TokenExpiredException {
+export class TokenInvaildException extends HttpException {
     constructor() {
-        return new HttpException('Token has expired', TOKEN_EXPIRED);
+        super('Invalid token', TOKEN_INVAILD);
     }
 }
 
-export class UserNotFoundException extends HttpException{
+export class TokenExpiredException extends HttpException {
+    constructor() {
+        super('Token has expired', TOKEN_EXPIRED);
+    }
+}
+
+export class UserNotFoundException extends HttpException {
     constructor(message?: string) {
         super(message ? message : 'User Not Found', USER_NOT_FOUND);
+    }
+}
+
+export class DataNotFoundException extends HttpException {
+    constructor(message?: string) {
+        super(message ? message : 'Data Not Found', DATA_NOT_FOUND);
     }
 }
