@@ -35,7 +35,7 @@ export class BoardsService {
         }
     }
 
-    async createBoard(user: User, {title, context, subCategoryId} : CreateBoardInput) {
+    async createBoard(user: User, {title, content, subCategoryId} : CreateBoardInput) {
         try {
             if (!user) {
                 throw new UserNotFoundException;
@@ -49,7 +49,7 @@ export class BoardsService {
 
             await this.boards.save(this.boards.create({
                 title,
-                context,
+                content,
                 subCategory: subCategory.id,
                 user: user.id
             }));
@@ -58,7 +58,7 @@ export class BoardsService {
         }
     }
 
-    async editBoard(id: number, { title, context, subCategoryId }: EditBoardInput) {
+    async editBoard(id: number, { title, content, subCategoryId }: EditBoardInput) {
         try {
             const board = await this.boards.findOneBy({ id });
             if (!board) {
@@ -68,8 +68,8 @@ export class BoardsService {
             if (title) {
                 board.title = title;
             }
-            if (context) {
-                board.context = context;
+            if (content) {
+                board.content = content;
             }
             if (subCategoryId) {
                 board.subCategory = subCategoryId;

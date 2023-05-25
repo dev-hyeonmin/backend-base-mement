@@ -4,10 +4,12 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
 } from 'typeorm';
 import { SubCategory } from 'src/categories/entities/subCategory.entity';
 import { User } from 'src/users/entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 @Entity()
 export class Board extends CoreEntity {
@@ -24,8 +26,8 @@ export class Board extends CoreEntity {
         description: '게시글 내용',
         required: true,
     })
-    @Column({ type: String })
-    context: string;
+    @Column("text")
+    content: string;
 
     @ManyToOne(() => SubCategory, (subCategory) => subCategory.boards)
     @JoinColumn()
@@ -34,4 +36,7 @@ export class Board extends CoreEntity {
     @ManyToOne(() => User, (user) => user.boards)
     @JoinColumn()
     user: number;
+
+    @OneToMany(() => Comment, (comment) => comment.board)
+    comments: Comment[];
 }

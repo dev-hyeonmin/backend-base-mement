@@ -19,6 +19,8 @@ import { SubCategory } from './categories/entities/subCategory.entity';
 import { Board } from './boards/entities/board.entity';
 import { BoardsModule } from './boards/boards.module';
 import { PaginationModule } from './pagination/pagination.module';
+import { CommentsModule } from './comments/comments.module';
+import { Comment } from './comments/entities/comment.entity';
 
 @Module({
     imports: [
@@ -35,7 +37,7 @@ import { PaginationModule } from './pagination/pagination.module';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Category, SubCategory, Board],
+            entities: [User, Verification, Category, SubCategory, Board, Comment],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -59,6 +61,7 @@ import { PaginationModule } from './pagination/pagination.module';
         CategoriesModule,
         BoardsModule,
         PaginationModule,
+        CommentsModule,
     ],
     controllers: [],
     providers: [],

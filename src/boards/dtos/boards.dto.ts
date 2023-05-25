@@ -5,11 +5,11 @@ export class GetBoardsOutput {
     boards: Board[];
 }
 
-export class CreateBoardInput extends PickType(Board, ['title', 'context']) {
+export class CreateBoardInput extends PickType(Board, ['title', 'content']) {
     subCategoryId: number;
 }
 
-export class EditBoardInput extends PickType(Board, ['id', 'title', 'context']) {
+export class EditBoardInput extends PickType(Board, ['id', 'title', 'content']) {
     subCategoryId: number;
 }
 

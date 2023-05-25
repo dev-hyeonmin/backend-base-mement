@@ -11,6 +11,7 @@ import * as bcrypt from 'bcryptjs';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Board } from 'src/boards/entities/board.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 export enum UserRole {
     Admin = 'Admin',
@@ -44,6 +45,9 @@ export class User extends CoreEntity {
 
     @OneToMany(() => Board, (board) => board.user)
     boards: Board[];
+
+    @OneToMany(() => Comment, (comment) => comment.user)
+    comments: Comment[];
 
     @BeforeInsert()
     @BeforeUpdate()
