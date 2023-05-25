@@ -5,9 +5,6 @@ export class GetCommentsOutput {
     comments: Comment[];
 }
 
-export class CreateCommentInput extends PickType(Comment, ['content']) {
-    boardId: number;
-    referenceId?: number;
-}
+export class CreateCommentInput extends PickType(Comment, ['content', 'boardId', 'referenceId']) {}
 
 export class EditCommentInput extends PickType(Comment, ['content']) { }

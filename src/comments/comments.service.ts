@@ -32,6 +32,12 @@ export class CommentsService {
                     depth: true,
                     user: {
                         name: true
+                    },
+                    reference: {
+                        id: true,
+                        user: {
+                            name: true
+                        }
                     }
                 },
                 where: {
@@ -45,9 +51,9 @@ export class CommentsService {
                     },
                     depth: "ASC"
                 },
-                relations: ['user']
+                relations: ['user', 'reference.user']
             });
-            
+
             return { comments: commentList };
         } catch (error) {
             throw error;

@@ -5,6 +5,7 @@ import {
     JoinColumn,
     ManyToOne,
     OneToMany,
+    RelationId,
 } from 'typeorm';
 import { SubCategory } from 'src/categories/entities/subCategory.entity';
 import { User } from 'src/users/entities/user.entity';
@@ -35,7 +36,10 @@ export class Board extends CoreEntity {
 
     @ManyToOne(() => User, (user) => user.boards)
     @JoinColumn()
-    user: number;
+    user: User;
+
+    @RelationId((board: Board) => board.user)
+    userId: number;
 
     @OneToMany(() => Comment, (comment) => comment.board)
     comments: Comment[];

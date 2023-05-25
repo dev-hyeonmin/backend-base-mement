@@ -51,7 +51,7 @@ export class BoardsService {
                 title,
                 content,
                 subCategory: subCategory.id,
-                user: user.id
+                userId: user.id
             }));
         } catch (error) {
             throw error;
@@ -88,7 +88,7 @@ export class BoardsService {
                 throw new DataNotFoundException;
             }
 
-            if (board.user != userId) {
+            if (board.userId != userId) {
                 throw new ValidationException;
             }
 
