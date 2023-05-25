@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { Roles } from 'src/auth/roles.decorator';
-import { CreateBoardInput, DeleteBoardInput, EditBoardInput, GetBoardsOutput } from '../boards/dtos/boards.dto';
+import { CreateBoardInput, DeleteBoardInput, EditBoardInput, GetBoardOutput, GetBoardsOutput } from '../boards/dtos/boards.dto';
 import { AuthUser } from 'src/auth/auth-user.decorator';
 
 @Controller('boards')
@@ -11,9 +11,15 @@ export class BoardsController {
     ) { }
 
     @Get()
-    async getBoard(@Query('page') page?: string): Promise<GetBoardsOutput> {
+    async getBoards(@Query('page') page?: string): Promise<GetBoardsOutput> {
         return this.boardService.getBoards(+page);
     }
+
+    @Get(':id')
+    async getBoard(@Param('id') id: number): Promise<GetBoardOutput> {
+        return this.boardService.getBoardById(id);
+    }
+
 
     @Post()
     @Roles(['Any'])

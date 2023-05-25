@@ -30,6 +30,9 @@ export class Board extends CoreEntity {
     @Column("text")
     content: string;
 
+    @Column({type: Number, default: 0})
+    notice: number;
+
     @ManyToOne(() => SubCategory, (subCategory) => subCategory.boards)
     @JoinColumn()
     subCategory: number;

@@ -13,3 +13,7 @@ Custom communication site. Let one's imagine run away!! 💖
 + 댓글 :: comments
     + 대댓글
 + 알람 및 메일
+
+
+## Notice
+1. TypeORM type boolean -> int 0, 1 로 변경되는 문제
