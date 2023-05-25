@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { Roles } from 'src/auth/roles.decorator';
 import { CreateBoardInput, DeleteBoardInput, EditBoardInput, GetBoardsOutput } from '../boards/dtos/boards.dto';
@@ -11,8 +11,8 @@ export class BoardsController {
     ) { }
 
     @Get()
-    async getBoard(): Promise<GetBoardsOutput> {
-        return this.boardService.getBoards();
+    async getBoard(@Query('page') page?: string): Promise<GetBoardsOutput> {
+        return this.boardService.getBoards(+page);
     }
 
     @Post()

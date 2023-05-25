@@ -18,6 +18,7 @@ import { Category } from './categories/entities/category.entity';
 import { SubCategory } from './categories/entities/subCategory.entity';
 import { Board } from './boards/entities/board.entity';
 import { BoardsModule } from './boards/boards.module';
+import { PaginationModule } from './pagination/pagination.module';
 
 @Module({
     imports: [
@@ -57,6 +58,7 @@ import { BoardsModule } from './boards/boards.module';
         AuthModule,
         CategoriesModule,
         BoardsModule,
+        PaginationModule,
     ],
     controllers: [],
     providers: [],

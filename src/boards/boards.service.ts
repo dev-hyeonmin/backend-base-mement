@@ -6,6 +6,8 @@ import { CreateBoardInput, EditBoardInput, GetBoardsOutput } from '../boards/dto
 import { SubCategory } from 'src/categories/entities/subCategory.entity';
 import { DataNotFoundException, UserNotFoundException, ValidationException } from 'src/common/errors';
 import { User } from 'src/users/entities/user.entity';
+import { PaginationService } from 'src/pagination/pagination.service';
+import { DEFAULT_TAKE } from 'src/common/common.constants';
 
 @Injectable()
 export class BoardsService {
@@ -15,12 +17,17 @@ export class BoardsService {
         @InjectRepository(SubCategory)
         private readonly subCategories: Repository<SubCategory>,
         @InjectRepository(User)
-        private readonly users: Repository<User>
+        private readonly users: Repository<User>,
+        private readonly pagination: PaginationService
     ) { }
 
-    async getBoards(): Promise<GetBoardsOutput> {
-        try {            
-            const boardList = await this.boards.find();
+    async getBoards(page: number): Promise<GetBoardsOutput> {
+        try {
+            if (!page) {
+                page = 1;
+            }
+
+            const boardList = await this.pagination.getList<Board>(this.boards, DEFAULT_TAKE, page);
 
             return { boards: boardList };
         } catch (error) {

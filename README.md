@@ -5,12 +5,11 @@ Custom communication site. Let one's imagine run away!! 💖
 ---
 
 ## Function
-+ 게시판
-    + 페이징
-    + 에디터    
-+ 댓글
++ 카테고리 :: categories
++ 게시판 :: boards
+    + 페이징 (pagination module)
+    + 공지사항 작성 (Admin)
+    + 태그 (미정)
++ 댓글 :: comments
     + 대댓글
 + 알람 및 메일
-+ 카테고리
-+ 태그
-+ 공지사항
