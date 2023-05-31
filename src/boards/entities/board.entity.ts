@@ -30,6 +30,10 @@ export class Board extends CoreEntity {
     @Column("text")
     content: string;
 
+    @ApiProperty({
+        description: '공지사항 여부 (default: 0)',
+        required: true,
+    })
     @Column({type: Number, default: 0})
     notice: number;
 
