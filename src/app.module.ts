@@ -21,6 +21,7 @@ import { BoardsModule } from './boards/boards.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { CommentsModule } from './comments/comments.module';
 import { Comment } from './comments/entities/comment.entity';
+import { WebsocketsModule } from './websockets/websockets.module';
 
 @Module({
     imports: [
@@ -62,6 +63,7 @@ import { Comment } from './comments/entities/comment.entity';
         BoardsModule,
         PaginationModule,
         CommentsModule,
+        WebsocketsModule,
     ],
     controllers: [],
     providers: [],

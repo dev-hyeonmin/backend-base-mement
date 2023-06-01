@@ -18,4 +18,5 @@ Custom communication site. Let one's imagine run away!! 💖
 
 
 ## Notice
-1. TypeORM type boolean -> int 0, 1 로 변경되는 문제
+1. npm i --save @nestjs/websockets @nestjs/platform-socket.io
+    + peerDependencies issue -> downcrade ^8.0.0

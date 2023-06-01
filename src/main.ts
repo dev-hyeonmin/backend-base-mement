@@ -3,9 +3,11 @@ import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/http-exceiption.filter';
 import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/swagger';
 import { CommonInterceptor } from './common/common.interceptor';
+import { IoAdapter } from '@nestjs/platform-socket.io';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+    app.useWebSocketAdapter(new IoAdapter(app));
     app.useGlobalFilters(new HttpExceptionFilter());
     app.useGlobalInterceptors(new CommonInterceptor())
 
