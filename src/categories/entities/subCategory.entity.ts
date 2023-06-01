@@ -1,4 +1,4 @@
-import { CoreEntity } from "src/common/core.entity";
+import { CoreEntity } from "src/common/entities/core.entity";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import { Category } from "./category.entity";
 import { Board } from "src/boards/entities/board.entity";

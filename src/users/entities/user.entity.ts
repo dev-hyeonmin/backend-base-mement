@@ -1,4 +1,4 @@
-import { CoreEntity } from 'src/common/core.entity';
+import { CoreEntity } from 'src/common/entities/core.entity';
 import {
     BeforeInsert,
     BeforeUpdate,
