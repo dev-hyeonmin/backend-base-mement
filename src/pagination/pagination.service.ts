@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 export class PaginationService {
     constructor() { }
 
-    async getList<T>(entity: Repository<any>, take: number, page: number, where?: any): Promise<T[]> {
+    async getList<T>(entity: Repository<any>, take: number, page: number, where?: any, order?: any): Promise<T[]> {
         if (page < 1) {
             throw new BadRequestException;
         }
@@ -13,7 +13,8 @@ export class PaginationService {
         const list = entity.find({
             take,
             skip: (page - 1) * take,
-            where
+            where,
+            order
         });
 
         return list;

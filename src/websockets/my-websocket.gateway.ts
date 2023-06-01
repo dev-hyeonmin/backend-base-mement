@@ -1,7 +1,11 @@
 import { Logger } from '@nestjs/common';
 import { WebSocketGateway, WebSocketServer, OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage, MessageBody } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { noticeProps } from './message.interface';
+
+interface noticeProps {
+    userId: number;
+    message: string;
+}
 
 @WebSocketGateway()
 export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -18,7 +22,7 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
     }
 
     @SubscribeMessage('notice')
-    handleChat(@MessageBody() { userId, message }: noticeProps): void {
-        this.server.emit('notice', message); // send notice
+    handleMessage(@MessageBody() data: noticeProps): void {
+        this.server.emit('notice', data); // send notice
     }
 }

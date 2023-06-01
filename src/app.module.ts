@@ -22,6 +22,8 @@ import { PaginationModule } from './pagination/pagination.module';
 import { CommentsModule } from './comments/comments.module';
 import { Comment } from './comments/entities/comment.entity';
 import { WebsocketsModule } from './websockets/websockets.module';
+import { MessagesModule } from './messages/messages.module';
+import { Message } from './messages/entities/message.entity';
 
 @Module({
     imports: [
@@ -38,7 +40,7 @@ import { WebsocketsModule } from './websockets/websockets.module';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Category, SubCategory, Board, Comment],
+            entities: [User, Verification, Category, SubCategory, Board, Comment, Message],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -64,6 +66,7 @@ import { WebsocketsModule } from './websockets/websockets.module';
         PaginationModule,
         CommentsModule,
         WebsocketsModule,
+        MessagesModule,
     ],
     controllers: [],
     providers: [],

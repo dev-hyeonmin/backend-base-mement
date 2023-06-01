@@ -3,6 +3,7 @@ import {
     Column,
     Entity,
     JoinColumn,
+    JoinTable,
     ManyToOne,
     OneToMany,
     RelationId,
@@ -11,6 +12,7 @@ import { SubCategory } from 'src/categories/entities/subCategory.entity';
 import { User } from 'src/users/entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { Message } from 'src/messages/entities/message.entity';
 
 @Entity()
 export class Board extends CoreEntity {
@@ -42,12 +44,15 @@ export class Board extends CoreEntity {
     subCategory: number;
 
     @ManyToOne(() => User, (user) => user.boards)
-    @JoinColumn()
+    @JoinTable()
     user: User;
 
     @RelationId((board: Board) => board.user)
     userId: number;
 
     @OneToMany(() => Comment, (comment) => comment.board)
-    comments: Comment[];
+    comments?: Comment[];
+
+    @OneToMany(() => Message, (message) => message.board)
+    messages?: Message[];
 }

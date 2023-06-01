@@ -15,7 +15,7 @@ export class Comment extends CoreEntity {
     @JoinTable()
     user: User;
 
-    @ManyToOne(() => Comment, (comment) => comment.replies)
+    @ManyToOne(() => Comment, (comment) => comment.replies, {onDelete: "CASCADE"})
     reference: Comment;
 
     @RelationId((comment: Comment) => comment.reference)

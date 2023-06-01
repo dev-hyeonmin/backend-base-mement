@@ -6,6 +6,7 @@ import { User } from 'src/users/entities/user.entity';
 import { CreateCommentInput, EditCommentInput, GetCommentsOutput } from './dtos/comments.dto';
 import { DataNotFoundException, UserNotFoundException, ValidationException } from 'src/common/errors';
 import { Board } from 'src/boards/entities/board.entity';
+import { MessagesService } from 'src/messages/messages.service';
 
 @Injectable()
 export class CommentsService {
@@ -13,7 +14,8 @@ export class CommentsService {
         @InjectRepository(Board)
         private readonly boards: Repository<Board>,
         @InjectRepository(Comment)
-        private readonly comments: Repository<Comment>
+        private readonly comments: Repository<Comment>,
+        private readonly messagesService: MessagesService
     ) { }
 
     async getComments(boardId: number): Promise<GetCommentsOutput> {
@@ -90,6 +92,12 @@ export class CommentsService {
                 comment.reference = comment;
             }
             await this.comments.save(comment);
+
+            // notice to board writter
+            this.messagesService.createMessage(Number(board.userId), {
+                content: "댓글이 달렸습니다 :)",
+                boardId: board.id
+            })
         } catch (error) {
             throw error;
         }
