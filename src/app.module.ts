@@ -24,6 +24,7 @@ import { Comment } from './comments/entities/comment.entity';
 import { WebsocketsModule } from './websockets/websockets.module';
 import { MessagesModule } from './messages/messages.module';
 import { Message } from './messages/entities/message.entity';
+import { UploadsModule } from './uploads/uploads.module';
 
 @Module({
     imports: [
@@ -67,6 +68,7 @@ import { Message } from './messages/entities/message.entity';
         CommentsModule,
         WebsocketsModule,
         MessagesModule,
+        UploadsModule,
     ],
     controllers: [],
     providers: [],
