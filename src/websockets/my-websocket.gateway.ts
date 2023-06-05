@@ -2,8 +2,9 @@ import { Logger } from '@nestjs/common';
 import { WebSocketGateway, WebSocketServer, OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage, MessageBody } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-interface noticeProps {
+interface messageProps {
     userId: number;
+    boardId: number;
     message: string;
 }
 
@@ -21,8 +22,8 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
         this.logger.log(`Client disconnected: ${client.id}`)
     }
 
-    @SubscribeMessage('notice')
-    handleMessage(@MessageBody() data: noticeProps): void {
-        this.server.emit('notice', data); // send notice
+    @SubscribeMessage('message')
+    handleMessage(@MessageBody() data: messageProps): void {
+        this.server.emit('message', data); // send notice
     }
 }

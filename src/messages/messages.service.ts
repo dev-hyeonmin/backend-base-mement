@@ -50,7 +50,10 @@ export class MessagesService {
             await this.messages.save(this.messages.create({ user, content, board }));
 
             this.socket.handleMessage({
-                userId: user.id, message: content
+                userId: user.id,
+                boardId: boardId,
+                message: content,
+
             });
         } catch (error) {
             throw error;
