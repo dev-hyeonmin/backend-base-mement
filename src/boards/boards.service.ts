@@ -65,8 +65,8 @@ export class BoardsService {
             await this.boards.save(this.boards.create({
                 title,
                 content,
-                subCategory: subCategory.id,
-                userId: user.id
+                subCategory,
+                user
             }));
         } catch (error) {
             throw error;
@@ -87,7 +87,12 @@ export class BoardsService {
                 board.content = content;
             }
             if (subCategoryId) {
-                board.subCategory = subCategoryId;
+                const subCategory = await this.subCategories.findOneBy({ id: subCategoryId });
+                if (!subCategory) {
+                    throw new DataNotFoundException;
+                }
+                
+                board.subCategory = subCategory;
             }
             if (notice) {
                 board.notice = notice;

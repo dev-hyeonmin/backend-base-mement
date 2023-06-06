@@ -41,7 +41,10 @@ export class Board extends CoreEntity {
 
     @ManyToOne(() => SubCategory, (subCategory) => subCategory.boards)
     @JoinColumn()
-    subCategory: number;
+    subCategory: SubCategory;
+
+    @RelationId((board: Board) => board.subCategory)
+    subCategoryId: number;
 
     @ManyToOne(() => User, (user) => user.boards)
     @JoinTable()

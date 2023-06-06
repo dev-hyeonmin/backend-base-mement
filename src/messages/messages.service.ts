@@ -10,6 +10,8 @@ import { DEFAULT_TAKE } from 'src/common/common.constants';
 import { BoardsService } from 'src/boards/boards.service';
 import { DataNotFoundException, UserNotFoundException } from 'src/common/errors';
 import { Board } from 'src/boards/entities/board.entity';
+import { ConnectedSocket } from '@nestjs/websockets';
+import { Socket } from 'socket.io';
 
 @Injectable()
 export class MessagesService {
@@ -35,9 +37,9 @@ export class MessagesService {
         }
     }
 
-    async createMessage(userId: number, { content, boardId }: CreateMessageInput): Promise<void> {
+    async createMessage(targetId: number, { content, boardId }: CreateMessageInput): Promise<void> {
         try {
-            const user = await this.users.findOneBy({id: userId});
+            const user = await this.users.findOneBy({id: targetId});
             if (!user) {
                 throw new UserNotFoundException;
             }
@@ -50,7 +52,7 @@ export class MessagesService {
             await this.messages.save(this.messages.create({ user, content, board }));
 
             this.socket.handleMessage({
-                userId: user.id,
+                targetId,
                 boardId: boardId,
                 message: content,
 

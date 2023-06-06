@@ -1,6 +1,5 @@
 # mement-communication
-Custom communication site. Let one's imagine run away!! 💖
-
+Custom communication site.
 
 ---
 
@@ -9,12 +8,10 @@ Custom communication site. Let one's imagine run away!! 💖
 + 게시판 :: boards
     + 페이징 (pagination module)
     + 공지사항 작성 (Admin)
-    + 추천, 조회수
-    + 태그?
-    + 신고?
 + 댓글 :: comments
     + 대댓글
 + 알람 및 메일
++ S3 이미지 업로드
 
 
 ## Notice
