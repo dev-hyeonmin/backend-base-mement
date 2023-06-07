@@ -3,10 +3,10 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class SuccessCommonResponseDto<T> {
     //enum: EnumToArray(HttpStatus), 
-    @ApiProperty({ description: '상태코드' })
-    readonly statusCode: number;
+    @ApiProperty({ example: HttpStatus.OK, description: '상태코드' })
+    statusCode: number;
 
-    @ApiProperty({ type: Boolean, description: '성공여부' })
+    @ApiProperty({ type: Boolean, example: true, description: '성공여부' })
     readonly success: boolean;
 
     @ApiProperty({

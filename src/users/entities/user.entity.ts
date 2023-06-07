@@ -22,6 +22,11 @@ export enum UserRole {
 @Entity()
 export class User extends CoreEntity {
     @Column({ type: String })
+    @ApiProperty({
+        example:'홍길동',
+        description:'이름',
+        required:true,
+    })
     name: string;
 
     @Column({ type: String })
@@ -32,7 +37,7 @@ export class User extends CoreEntity {
     })
     email: string;
 
-    @Column({ type: String })
+    @Column({ type: String })        
     password: string;
 
     @Column({ type: 'enum', enum: UserRole, default: UserRole.User })
@@ -42,6 +47,10 @@ export class User extends CoreEntity {
     verified: boolean;
 
     @UpdateDateColumn()
+    @ApiProperty({
+        example:'2023-01-01 10:00:00',
+        description:'마지막 로그인 시간',
+    })
     lastLogin: string;
 
     @OneToMany(() => Board, (board) => board.user)

@@ -57,7 +57,15 @@ export class UsersService {
 
     async userFindById(id: number): Promise<UserProfileOutput> {
         try {
-            const user = await this.users.findOneBy({ id });
+            const user = await this.users.findOne({
+                where: { id },
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    lastLogin: true,
+                }
+            });
             if (!user) {
                 throw new UserNotFoundException();
             }

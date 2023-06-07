@@ -3,7 +3,26 @@ Custom communication site.
 
 ---
 
-## Function
+## Function CRM
++ 상품 (=이벤트)
+    + 상품 Entity / 이벤트 플래그로 구분
+    + 삭제 : del 컬럼으로 구분
+    + 대분류 (서브 대분류 X)
+    + 시술?
++ 예약
+    + 시간별 인원수 지정
+    + 휴무일 지정
+    + 영업 시간 설정
+    + 예약 완료 알림
++ 고객
+    + 기본 정보
+    + 예약 정보
++ 통계
+
+
+---
+
+### Function communication
 + 카테고리 :: categories
 + 게시판 :: boards
     + 페이징 (pagination module)

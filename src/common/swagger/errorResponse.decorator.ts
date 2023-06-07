@@ -16,16 +16,24 @@ export const ErrorResponse = (
             if (typeof error.message !== 'string') {
                 throw Error('http오류는 넘겨줄때 string 타입으로 주셔야합니다.');
             }
-            // innerErrorDto = new HttpExceptionErrorResponseDto(
-            //     StatusCode,
-            //     error.model.name,
-            //     error.message,
-            //     error.code
-            // );
+            innerErrorDto = new HttpExceptionErrorResponseDto(
+                StatusCode,
+                error.model.name,
+                error.message,
+                error.code
+            );
             const commonErrorInstance =
                 makeInstanceByApiProperty<ErrorCommonResponse<any>>(
                     ErrorCommonResponse
                 );
+
+            if (StatusCode) {
+                commonErrorInstance.statusCode = error.status;
+            }
+
+            if (error.path) {
+                commonErrorInstance.path = error.path;
+            }
             commonErrorInstance.error = error.message;
             return {
                 [error.exampleTitle]: {
@@ -38,7 +46,7 @@ export const ErrorResponse = (
             Object.assign(result, item);
             return result;
         }, {}); // null 값 있을경우 필터링
-    
+
     return applyDecorators(
         ApiExtraModels(
             ErrorCommonResponse,

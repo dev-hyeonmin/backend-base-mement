@@ -4,13 +4,13 @@ import { enumToArray } from '../util/enumToArray';
 
 export class ErrorCommonResponse<T> {
   @ApiProperty({ enum: enumToArray(HttpStatus), description: '상태코드' })
-  readonly statusCode: number;
+  statusCode: number;
 
   @ApiProperty({ type: String, description: '에러 발생시간' })
   readonly timestamp: Date;
 
   @ApiProperty({ type: String, description: '에러 발생 url' })
-  readonly path: string;
+  path: string;
 
   @ApiProperty({
     type: 'generic',

@@ -29,6 +29,10 @@ export const SuccessResponse = (
                 commonResponseInstance.result = dtoData;
             }
 
+            if (response.status) {
+                commonResponseInstance.statusCode = response.status;
+            }
+            
             return {
                 [response.exampleTitle]: {
                     value: commonResponseInstance,

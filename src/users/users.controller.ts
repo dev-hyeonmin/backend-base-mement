@@ -11,10 +11,11 @@ import { UpdateAccountInput } from './dtos/users.dto';
 import { UpdateAccountOutput } from './dtos/users.dto';
 import { VerifyEmailOutput } from './dtos/verify-email.dto';
 import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
-import { ApiOkResponse } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { ErrorResponse } from 'src/common/swagger/errorResponse.decorator';
 import { UserNotFoundException } from 'src/common/errors';
 import { USER_NOT_FOUND } from 'src/common/errors.constants';
+import { Roles } from 'src/auth/roles.decorator';
 
 /*
  * GET    : getting data
@@ -27,37 +28,57 @@ import { USER_NOT_FOUND } from 'src/common/errors.constants';
 export class UsersController {
     constructor(private readonly userService: UsersService) { }
 
-    @Get('verification')
-    async verifyEmail(@Req() data: any): Promise<VerifyEmailOutput> {
-        return this.userService.verifyEmail(data.query.code);
-    }
+    // @Get('verification')
+    // async verifyEmail(@Req() data: any): Promise<VerifyEmailOutput> {
+    //     return this.userService.verifyEmail(data.query.code);
+    // }
 
     @Get(':id')
-    async userFindById(@Param('id') id: number): Promise<UserProfileOutput> {
-        const result = await this.userService.userFindById(id);
-        return result;
-    }
-
-    @Post('login')
+    @Roles(['Any'])
+    @ApiOperation({ summary: '사용자 정보 조회' })
     @SuccessResponse(HttpStatus.OK, [
         {
-            model: LoginOutput,
-            exampleTitle: 'Success login',
-            exampleDescription: 'Success login description'
+            model: UserProfileOutput,
+            exampleTitle: 'Success',
+            exampleDescription: ''
         }
     ])
     @ErrorResponse(USER_NOT_FOUND, [
         {
             model: UserNotFoundException,
             exampleTitle: "인증오류 - 유저없음",
+            status: USER_NOT_FOUND,
             message: "User Not Found.",
-            exampleDescription: "사용자 없음."
+            path: "/users/:id"
+        },
+    ])
+    async userFindById(@Param('id') id: number): Promise<UserProfileOutput> {
+        const result = await this.userService.userFindById(id);
+        return result;
+    }
+
+    @Post('login')
+    @ApiOperation({ summary: '로그인' })
+    @SuccessResponse(HttpStatus.OK, [
+        {
+            model: LoginOutput,
+            exampleTitle: 'Success login',
+        }
+    ])
+    @ErrorResponse(USER_NOT_FOUND, [
+        {
+            model: UserNotFoundException,
+            exampleTitle: "인증오류 - 유저없음",
+            status: USER_NOT_FOUND,
+            path: '/users/login',
+            message: "User Not Found.",
         },
         {
             model: UserNotFoundException,
             exampleTitle: "인증오류 - 비밀번호 인증 오류",
+            status: USER_NOT_FOUND,
+            path: '/users/login',
             message: "Please check your email or password.",
-            exampleDescription: "비밀번호 인증 오류"
         }
     ])
     async login(@Body() data: LoginInput): Promise<LoginOutput> {
