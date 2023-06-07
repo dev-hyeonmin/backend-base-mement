@@ -12,6 +12,7 @@ import { DataNotFoundException, UserNotFoundException } from 'src/common/errors'
 import { Board } from 'src/boards/entities/board.entity';
 import { ConnectedSocket } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
+import { GetListOutput } from 'src/pagination/dtos/pagination.dto';
 
 @Injectable()
 export class MessagesService {
@@ -26,12 +27,12 @@ export class MessagesService {
         private readonly pagination: PaginationService
     ) { }
 
-    async getMessages(user: User): Promise<GetMessagesOutput> {
+    async getMessages(user: User): Promise<GetListOutput<Message>> {
         try {
             const order: FindOptionsOrder<Message> = { createAt: "DESC" };
-            const messages = await this.pagination.getList<Message>(this.messages, 10, 1, null, order);
+            const result = await this.pagination.getList<Message>(this.messages, 10, 1, null, order);
 
-            return { messages };
+            return result;
         } catch (error) {
             throw error;
         }

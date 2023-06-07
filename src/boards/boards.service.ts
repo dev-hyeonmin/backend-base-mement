@@ -21,7 +21,7 @@ export class BoardsService {
         private readonly pagination: PaginationService
     ) { }
 
-    async getBoards(page: number): Promise<GetBoardsOutput> {
+    async getBoards(page: number): Promise<GetBoardsOutput<Board>> {
         try {
             if (!page) {
                 page = 1;

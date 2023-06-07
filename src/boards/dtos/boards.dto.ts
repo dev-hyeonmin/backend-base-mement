@@ -1,9 +1,10 @@
 import { PickType } from "@nestjs/swagger";
 import { Board } from "../entities/board.entity";
+import { GetListOutput } from "src/pagination/dtos/pagination.dto";
 
-export class GetBoardsOutput {
+export class GetBoardsOutput<T> {
     notices?: Board[];
-    boards: Board[];
+    boards: GetListOutput<T>;
 }
 
 export class GetBoardOutput {
