@@ -17,3 +17,4 @@ Custom communication site.
 ## Notice
 1. npm i --save @nestjs/websockets @nestjs/platform-socket.io
     + peerDependencies issue -> downcrade ^8.0.0
+2. class-validator, class-transformer 추가

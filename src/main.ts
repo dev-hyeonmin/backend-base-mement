@@ -4,12 +4,14 @@ import { HttpExceptionFilter } from './common/http-exceiption.filter';
 import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/swagger';
 import { CommonInterceptor } from './common/common.interceptor';
 import { IoAdapter } from '@nestjs/platform-socket.io';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.useWebSocketAdapter(new IoAdapter(app));
     app.useGlobalFilters(new HttpExceptionFilter());
-    app.useGlobalInterceptors(new CommonInterceptor())
+    app.useGlobalInterceptors(new CommonInterceptor());
+    app.useGlobalPipes(new ValidationPipe());
 
     const config = new DocumentBuilder()
         .setTitle('CloneBeam API')

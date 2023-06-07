@@ -1,6 +1,7 @@
 import { PickType } from "@nestjs/swagger";
 import { Board } from "../entities/board.entity";
 import { GetListOutput } from "src/pagination/dtos/pagination.dto";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class GetBoardsOutput<T> {
     notices?: Board[];
@@ -12,6 +13,7 @@ export class GetBoardOutput {
 }
 
 export class CreateBoardInput extends PickType(Board, ['title', 'content']) {
+    @IsNotEmpty()
     subCategoryId: number;
 }
 

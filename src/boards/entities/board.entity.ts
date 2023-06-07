@@ -13,6 +13,7 @@ import { User } from 'src/users/entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { Message } from 'src/messages/entities/message.entity';
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class Board extends CoreEntity {
@@ -22,6 +23,7 @@ export class Board extends CoreEntity {
         required: true,
     })
     @Column({ type: String })
+    @IsNotEmpty()
     title: string;
 
     @ApiProperty({
@@ -30,13 +32,14 @@ export class Board extends CoreEntity {
         required: true,
     })
     @Column("text")
+    @IsNotEmpty()
     content: string;
 
     @ApiProperty({
         description: '공지사항 여부 (default: 0)',
         required: true,
     })
-    @Column({type: Number, default: 0})
+    @Column({ type: Number, default: 0 })
     notice: number;
 
     @ManyToOne(() => SubCategory, (subCategory) => subCategory.boards)
