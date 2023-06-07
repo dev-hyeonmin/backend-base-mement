@@ -11,4 +11,4 @@ import { Verification } from './entities/verification.entity';
     providers: [UsersService],
     exports: [UsersService],
 })
-export class UsersModule {}
+export class UsersModule { }

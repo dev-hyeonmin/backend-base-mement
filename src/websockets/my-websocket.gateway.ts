@@ -22,16 +22,21 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
     connections = new Map();
  
     constructor(
-        private readonly jwtService: JwtService,
+        private readonly tokenService: TokenService,
+        private readonly usersService: UsersService,
     ) {}
     
     async handleConnection(client: Socket) {
-        const authUserId = await this.auth(client.handshake.query);
-        this.connections.set(authUserId, client.id);
+        const authUser = await this.auth(client.handshake.headers);
+        this.connections.set(authUser.id, client.id);
+
         this.logger.log(`Client connected: ${client.id}`)
     }
 
     handleDisconnect(client: Socket) {
+        const connectionKey = this.getKeyByValue(this.connections, client.id);
+        this.connections.delete(connectionKey);
+
         this.logger.log(`Client disconnected: ${client.id}`)
     }
 
@@ -40,26 +45,32 @@ export class MyWebSocketGateway implements OnGatewayConnection, OnGatewayDisconn
         this.server.to(this.connections.get(data.targetId)).emit('message', data);
     }
     
+    getKeyByValue(object, value: string) {
+        let keyArr = [...object.keys()];        
+        return keyArr.find(key => object.get(key) == value);
+    }
+      
     async auth(query): Promise<User> {
         if ('x-jwt' in query) {
             const token = query['x-jwt'];
+
             try {
-                const decoded = this.jwtService.verify(token, {
-                    secret: process.env.PRIVATE_KEY,
-                });
+                const decoded = this.tokenService.verify(token.toString());
 
                 if (
                     typeof decoded === 'object' &&
                     decoded.hasOwnProperty('id')
                 ) {
-                    return decoded['id'];
+                    const { user } = await this.usersService.userFindById(
+                        decoded['id'],
+                    );
+
+                    return user;
                 }
             } catch (e) {
                 if (e.name === 'TokenExpiredError') {
                     throw new TokenExpiredException();
                 }
-
-                console.log(e);
             }
         }
     }    
