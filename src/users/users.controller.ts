@@ -11,7 +11,7 @@ import { UpdateAccountInput } from './dtos/users.dto';
 import { UpdateAccountOutput } from './dtos/users.dto';
 import { VerifyEmailOutput } from './dtos/verify-email.dto';
 import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
-import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiSecurity } from '@nestjs/swagger';
 import { ErrorResponse } from 'src/common/swagger/errorResponse.decorator';
 import { UserNotFoundException } from 'src/common/errors';
 import { USER_NOT_FOUND } from 'src/common/errors.constants';
@@ -35,6 +35,7 @@ export class UsersController {
 
     @Get(':id')
     @Roles(['Any'])
+    @ApiSecurity('x-jwt')
     @ApiOperation({ summary: '사용자 정보 조회' })
     @SuccessResponse(HttpStatus.OK, [
         {

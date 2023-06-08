@@ -17,6 +17,12 @@ async function bootstrap() {
         .setTitle('CloneBeam API')
         .setDescription('New CloneBeam API Document By rhm.')
         .setVersion("0.1")
+        .addApiKey({
+            type: 'apiKey',
+            name: 'x-jwt',
+            description: 'Enter x-jwt token for auth user.',
+            in: 'header'
+        }, 'x-jwt')
         .build();
     
     const document = SwaggerModule.createDocument(app, config);

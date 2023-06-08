@@ -10,9 +10,6 @@ import {
 import * as bcrypt from 'bcryptjs';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-import { Board } from 'src/boards/entities/board.entity';
-import { Comment } from 'src/comments/entities/comment.entity';
-import { Message } from 'src/messages/entities/message.entity';
 
 export enum UserRole {
     Admin = 'Admin',
@@ -53,14 +50,14 @@ export class User extends CoreEntity {
     })
     lastLogin: string;
 
-    @OneToMany(() => Board, (board) => board.user)
-    boards?: Board[];
+    // @OneToMany(() => Board, (board) => board.user)
+    // boards?: Board[];
 
-    @OneToMany(() => Comment, (comment) => comment.user)
-    comments?: Comment[];
+    // @OneToMany(() => Comment, (comment) => comment.user)
+    // comments?: Comment[];
 
-    @OneToMany(() => Message, (message) => message.user)
-    messages?: Message[];
+    // @OneToMany(() => Message, (message) => message.user)
+    // messages?: Message[];
 
     @BeforeInsert()
     @BeforeUpdate()

@@ -13,18 +13,8 @@ import { TokenModule } from './token/token.module';
 import { TokenMiddleware } from './token/token.middleware';
 import { MailModule } from './mail/mail.module';
 import { Verification } from './users/entities/verification.entity';
-import { CategoriesModule } from './categories/categories.module';
-import { Category } from './categories/entities/category.entity';
-import { SubCategory } from './categories/entities/subCategory.entity';
-import { Board } from './boards/entities/board.entity';
-import { BoardsModule } from './boards/boards.module';
-import { PaginationModule } from './pagination/pagination.module';
-import { CommentsModule } from './comments/comments.module';
-import { Comment } from './comments/entities/comment.entity';
 import { WebsocketsModule } from './websockets/websockets.module';
-import { MessagesModule } from './messages/messages.module';
-import { Message } from './messages/entities/message.entity';
-import { UploadsModule } from './uploads/uploads.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
     imports: [
@@ -41,7 +31,7 @@ import { UploadsModule } from './uploads/uploads.module';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Category, SubCategory, Board, Comment, Message],
+            entities: [User, Verification],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -55,14 +45,15 @@ import { UploadsModule } from './uploads/uploads.module';
                 port: 587,
                 secure: false,
                 auth: {
-                  user: process.env.FROM_MAIL,
-                  pass: process.env.FROM_MAIL_PASSWORD,
+                    user: process.env.FROM_MAIL,
+                    pass: process.env.FROM_MAIL_PASSWORD,
                 },
-              },
+            },
         }),
         UsersModule,
         AuthModule,
         WebsocketsModule,
+        ProductsModule,
     ],
     controllers: [],
     providers: [],
