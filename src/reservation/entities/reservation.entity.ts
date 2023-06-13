@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
+import { Chart } from 'src/charts/entities/chart.entity';
 import { CoreEntity } from 'src/common/entities/core.entity';
-import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 export enum ReservationStatus {
@@ -45,6 +45,6 @@ export class Reservation extends CoreEntity {
     })
     items?: String;
 
-    @ManyToOne(() => User, (user) => user.reservations)
-    user?: User;
+    @ManyToOne(() => Chart, (chart) => chart.reservations)
+    chart: Chart;
 }

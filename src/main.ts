@@ -21,13 +21,12 @@ async function bootstrap() {
             type: 'apiKey',
             name: 'x-jwt',
             description: 'Enter x-jwt token for auth user.',
-            in: 'header'
+            in: 'header',
         }, 'x-jwt')
         .build();
     
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
-
     await app.listen(3000);
 }
 bootstrap();

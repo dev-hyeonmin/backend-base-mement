@@ -49,10 +49,7 @@ export class User extends CoreEntity {
         example:'2023-01-01 10:00:00',
         description:'마지막 로그인 시간',
     })
-    lastLogin: string;
-
-    @OneToMany(() => Reservation, (reservation) => reservation.user)
-    reservations?: Reservation[];
+    lastLogin: string;    
 
     @BeforeInsert()
     @BeforeUpdate()

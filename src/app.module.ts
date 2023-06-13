@@ -17,6 +17,9 @@ import { WebsocketsModule } from './websockets/websockets.module';
 import { ProductsModule } from './products/products.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { Reservation } from './reservation/entities/reservation.entity';
+import { ChartsModule } from './charts/charts.module';
+import { Chart } from './charts/entities/chart.entity';
+import { MarketingAgree } from './charts/entities/marketingAgree.entity';
 
 @Module({
     imports: [
@@ -33,7 +36,7 @@ import { Reservation } from './reservation/entities/reservation.entity';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Reservation],
+            entities: [User, Verification, Chart, Reservation, MarketingAgree],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -57,6 +60,7 @@ import { Reservation } from './reservation/entities/reservation.entity';
         WebsocketsModule,
         ProductsModule,
         ReservationModule,
+        ChartsModule,
     ],
     controllers: [],
     providers: [],

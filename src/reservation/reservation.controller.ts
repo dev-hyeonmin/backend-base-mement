@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { Reservation, ReservationStatus } from './entities/reservation.entity';
-import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
 import { getReservationSchema, getReservationsSchema } from './dtos/schema.dto';
 import { CreateReservationsInput, GetReservationsInput, UpdateReservationsInput } from './dtos/reservation.dto';
-import { CoreOutput } from 'src/common/dtos/output.dto';
 
+@ApiTags('reservation')
 @Controller('reservation')
 export class ReservationController {
     constructor(
