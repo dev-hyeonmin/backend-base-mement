@@ -16,6 +16,7 @@ import { ErrorResponse } from 'src/common/swagger/errorResponse.decorator';
 import { UserNotFoundException } from 'src/common/errors';
 import { USER_NOT_FOUND } from 'src/common/errors.constants';
 import { Roles } from 'src/auth/roles.decorator';
+import { User } from './entities/user.entity';
 
 /*
  * GET    : getting data

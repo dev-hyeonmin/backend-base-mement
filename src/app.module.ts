@@ -15,6 +15,8 @@ import { MailModule } from './mail/mail.module';
 import { Verification } from './users/entities/verification.entity';
 import { WebsocketsModule } from './websockets/websockets.module';
 import { ProductsModule } from './products/products.module';
+import { ReservationModule } from './reservation/reservation.module';
+import { Reservation } from './reservation/entities/reservation.entity';
 
 @Module({
     imports: [
@@ -31,7 +33,7 @@ import { ProductsModule } from './products/products.module';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification],
+            entities: [User, Verification, Reservation],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -54,6 +56,7 @@ import { ProductsModule } from './products/products.module';
         AuthModule,
         WebsocketsModule,
         ProductsModule,
+        ReservationModule,
     ],
     controllers: [],
     providers: [],
