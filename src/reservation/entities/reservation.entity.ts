@@ -29,6 +29,22 @@ export class Reservation extends CoreEntity {
     })
     status: ReservationStatus;
 
+    @Column({type: 'text', nullable: true})
+    @ApiProperty({
+        description: '메모',
+        example: "보톡스및 필러 관련 상담 원함.",
+        nullable: true
+    })
+    memo?: String;
+
+    @Column({type: 'json', nullable: true})
+    @ApiProperty({
+        description: '예약 상품 정보 리스트',
+        example: "[{name: '보톡스 100유닛', price: 99000, procedures: [{name: '보톡스', count: 5}]}]",
+        nullable: true
+    })
+    items?: String;
+
     @ManyToOne(() => User, (user) => user.reservations)
     user?: User;
 }

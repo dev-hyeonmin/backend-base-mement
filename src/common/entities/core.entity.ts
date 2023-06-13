@@ -11,6 +11,7 @@ export class CoreEntity {
     @Column((type) => Number)
     @ApiProperty({
         description: '고유 ID',
+        example: 1,
     })
     id: number;
 
@@ -19,6 +20,7 @@ export class CoreEntity {
     @ApiProperty({
         type: String,
         description: '생성 일자',
+        example: '2023-01-01 10:00:00',
     })
     createAt: Date;
 
@@ -27,6 +29,7 @@ export class CoreEntity {
     @ApiProperty({
         type: String,
         description: '업데이트 일자',
+        example: '2023-01-01 10:00:00',
     }) 
     updateAt: Date;
 }

@@ -15,7 +15,7 @@ export class GetReservationsInput {
     userId: number
 }
 
-export class CreateReservationsInput extends PickType(Reservation, ['status', 'reserveAt']) { 
+export class CreateReservationsInput extends PickType(PartialType(Reservation), ['status', 'reserveAt', 'memo', 'items']) { 
     @ApiProperty({
         description: '예약 고객 ID',
         example: 1
@@ -23,4 +23,4 @@ export class CreateReservationsInput extends PickType(Reservation, ['status', 'r
     userId: number
 }
 
-export class UpdateReservationsInput extends PickType(PartialType(Reservation),['status', 'reserveAt']) { }
+export class UpdateReservationsInput extends PickType(PartialType(Reservation),['status', 'reserveAt', 'memo', 'items']) { }
