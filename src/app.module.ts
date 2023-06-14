@@ -20,6 +20,7 @@ import { Reservation } from './reservation/entities/reservation.entity';
 import { ChartsModule } from './charts/charts.module';
 import { Chart } from './charts/entities/chart.entity';
 import { MarketingAgree } from './charts/entities/marketingAgree.entity';
+import { Product } from './products/entities/product.entity';
 
 @Module({
     imports: [
@@ -36,7 +37,7 @@ import { MarketingAgree } from './charts/entities/marketingAgree.entity';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Chart, Reservation, MarketingAgree],
+            entities: [User, Verification, Chart, Reservation, MarketingAgree, Product],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,

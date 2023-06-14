@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { CoreEntity } from 'src/common/entities/core.entity';
 import { Column, Entity } from 'typeorm';
@@ -9,13 +10,44 @@ import { Column, Entity } from 'typeorm';
 export class Product extends CoreEntity {
     @IsNotEmpty()
     @Column({ type: String })
+    @ApiProperty({
+        type: String,
+        description: '상품명',
+        example: '국산 침샘보톡스 100U',
+    })
     name: string;
 
     @Column({ type: String, nullable: true })
+    @ApiProperty({
+        type: String,
+        description: '상품 설명',
+        example: '[귀밑샘] 부위만 시술 가능합니다.<br>*턱밑샘, 또는 혀밑샘 부위 시술 불가',
+    })
     description?: string;
 
-    @Column({ type: Boolean, default: false })
-    isEvent: boolean;
+    @Column({ type: Number, default: 0 })
+    @ApiProperty({
+        type: Number,
+        description: '가격',
+        example: 99000,
+    })
+    price: number;
+
+    @Column({ type: Number, default: 1 })
+    @ApiProperty({
+        type: Number,
+        description: '시술 가능 횟수',
+        example: 5,
+    })
+    count: number;
+
+    // @Column({ type: Boolean, default: false })
+    // @ApiProperty({
+    //     type: String,
+    //     description: '이벤트 상품 여부',
+    //     example: false,
+    // })
+    // isEvent: boolean;
 
     @Column({ type: Boolean, default: false })
     isDelete: boolean;

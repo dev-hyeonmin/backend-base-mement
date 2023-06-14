@@ -5,7 +5,6 @@ import { CoreEntity } from 'src/common/entities/core.entity';
 import { Reservation } from 'src/reservation/entities/reservation.entity';
 import { BeforeInsert, Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { MarketingAgree } from './marketingAgree.entity';
-import { DeleteFlag } from 'src/common/entities/status';
 
 export enum ChartGender {
     Man = 'M',
@@ -67,14 +66,14 @@ export class Chart extends CoreEntity {
     })
     memo?: String;
 
-    @Column({ type: 'enum', enum: DeleteFlag, default: DeleteFlag.Active })
+    @Column({ type: Boolean, default: false })
     @IsNotEmpty()
     @ApiProperty({
-        type: String,
+        type: Boolean,
         description: '삭제 여부',
-        example: 'N',
+        example: false,
     })
-    isDelete: DeleteFlag;
+    isDelete: Boolean;
 
     @OneToMany(() => Reservation, (reservation) => reservation.chart)
     reservations?: Reservation[];
