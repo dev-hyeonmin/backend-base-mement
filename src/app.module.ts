@@ -23,6 +23,8 @@ import { MarketingAgree } from './charts/entities/marketingAgree.entity';
 import { Product } from './products/entities/product.entity';
 import { ProceduresModule } from './procedures/procedures.module';
 import { Procedure } from './procedures/entities/Procedure.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/entities/Category.entity';
 
 @Module({
     imports: [
@@ -39,7 +41,7 @@ import { Procedure } from './procedures/entities/Procedure.entity';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Chart, Reservation, MarketingAgree, Product, Procedure],
+            entities: [User, Verification, Chart, Reservation, MarketingAgree, Product, Procedure, Category],
         }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
@@ -65,6 +67,7 @@ import { Procedure } from './procedures/entities/Procedure.entity';
         ReservationModule,
         ChartsModule,
         ProceduresModule,
+        CategoriesModule,
     ],
     controllers: [],
     providers: [],

@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
+import { Category } from 'src/categories/entities/Category.entity';
 import { CoreEntity } from 'src/common/entities/core.entity';
 import { Procedure } from 'src/procedures/entities/Procedure.entity';
-import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 /*
  * 상품명, 상품설명, 이벤트 상품 여부, 삭제 플래그
@@ -52,6 +53,15 @@ export class Product extends CoreEntity {
 
     @Column({ type: Boolean, default: false })
     isDelete: boolean;
+
+    @ManyToOne(() => Category, (category) => category.products)
+    @JoinTable({ name: 'product_procedures' })
+    @ApiProperty({
+        type: Category,
+        description: '카테고리',
+        example: {},
+    })
+    category: Category;
 
     @ManyToMany(type => Procedure, { eager: true })
     @JoinTable({ name: 'product_procedures' })

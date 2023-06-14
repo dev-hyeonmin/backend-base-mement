@@ -45,6 +45,9 @@ export class Reservation extends CoreEntity {
     })
     items?: String;
 
+    @Column({ type: Boolean, default: false })
+    isDelete: boolean;
+
     @ManyToOne(() => Chart, (chart) => chart.reservations)
     chart: Chart;
 }
