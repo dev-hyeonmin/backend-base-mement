@@ -17,7 +17,7 @@ export class ProductsController {
             exampleDescription: ''
         }
     ])
-    async getRpducts(@Query() getProductsInput: GetProductsInput): Promise<void> {
+    async getProducts(@Query() getProductsInput: GetProductsInput): Promise<void> {
         //
     }
 
@@ -42,7 +42,7 @@ export class ProductsController {
     }
 
     @Put(":id")
-    @ApiOperation({ summary: '차트 업데이트' })
+    @ApiOperation({ summary: '상품 업데이트' })
     @ApiOkResponse()
     async updateProduct(
         @Param('id') productId: number,

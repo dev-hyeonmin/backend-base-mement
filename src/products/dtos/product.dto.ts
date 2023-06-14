@@ -19,6 +19,20 @@ export class getProductOutput {
     products: Product;
 };
 
-export class CreateProductInput extends PickType(PartialType(Product), ['name', 'description', 'price', 'count']) { }
+export class CreateProductInput extends PickType(PartialType(Product), ['name', 'description', 'price', 'count']) {
+    @ApiProperty({
+        type: Array,
+        description: '시술 ID 배열',
+        example: [1, 9, 10],
+    })
+    procedures: number[];
+}
 
-export class UpdateProductInput extends PickType(PartialType(Product),['name', 'description', 'price', 'count']) { }
+export class UpdateProductInput extends PickType(PartialType(Product), ['name', 'description', 'price', 'count']) {
+    @ApiProperty({
+        type: Array,
+        description: '시술 ID 배열',
+        example: [1, 9, 10],
+    })
+    procedures: number[];
+}
