@@ -45,7 +45,7 @@ export class CategoriesController {
     @ApiOperation({ summary: '카테고리 업데이트' })
     @ApiOkResponse()
     async updateCategory(
-        @Param('id') CategoryId: number,
+        @Param('id') CategoryId: number,    
         @Body() updateCategoryInput: UpdateCategoryInput
     ): Promise<void> {
         //

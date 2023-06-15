@@ -1,24 +1,26 @@
-# mement-communication
-Custom communication site.
+# Custom Hospital CRM
+병원 CRM 기본 베이스 설계 중입니다. 현재 Entity와 API 문서를 위한 Controller 및 DTO만 있는 형태입니다.
 
----
+**issue**
+1. npm i --save @nestjs/websockets @nestjs/platform-socket.io
+    + peerDependencies issue -> downcrade ^8.0.0
+2. class-validator, class-transformer 추가
 
-## Function CRM
-+ 상품 (=이벤트)
-    + 상품 Entity / 이벤트 플래그로 구분
-    + 삭제 : del 컬럼으로 구분
-    + 대분류 (서브 대분류 X)
-    + 시술?
-+ 예약
-    + 시간별 인원수 지정
-    + 휴무일 지정
-    + 영업 시간 설정
-    + 예약 완료 알림
-+ 고객
-    + 기본 정보
-    + 예약 정보
-+ 통계
+.
+.
+.
 
+## Entities
+1. Products & Procedures
+    + isDelete 컬럼으로 구분
+    + N:M Relation
+2. Reservation
+    + 예약 상품 -> JSON 형태로 저장
+3. Chart (=Client)
+4. Timetable: 예약 날짜 및 시간 관리
+    + 예약 가능 인원수 설정
+    + 휴무일 설정
+    + 날짜에 따른 예약 가능한 시간 조회
 
 ---
 
@@ -31,9 +33,3 @@ Custom communication site.
     + 대댓글
 + 알람 및 메일
 + S3 이미지 업로드
-
-
-## Notice
-1. npm i --save @nestjs/websockets @nestjs/platform-socket.io
-    + peerDependencies issue -> downcrade ^8.0.0
-2. class-validator, class-transformer 추가
