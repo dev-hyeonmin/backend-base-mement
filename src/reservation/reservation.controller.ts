@@ -4,6 +4,8 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
 import { getReservationSchema, getReservationsSchema } from './dtos/schema.dto';
 import { CreateReservationsInput, GetReservationsInput, UpdateReservationsInput } from './dtos/reservation.dto';
+import { GetAvailableTimesInput, GetAvailableTimesOuput, GetReservationLimitCountsOuput, UpdateReservationLimitCountsInput } from './dtos/reservationLimitCount.dto';
+import { Roles } from 'src/auth/roles.decorator';
 
 @ApiTags('reservation')
 @Controller('reservation')
@@ -59,6 +61,44 @@ export class ReservationController {
     @ApiOperation({ summary: '예약 삭제' })
     @ApiOkResponse()
     async deleteResrvation(@Param('id') reserveId: number): Promise<void> {
+        //
+    }
+
+    /**
+     * Reservation Limit Count
+     */
+    @Get('limitcounts')
+    @Roles(['Admin'])
+    @ApiOperation({ summary: '예약 가능 시간 조회' })
+    @SuccessResponse(HttpStatus.OK, [
+        {
+            model: GetReservationLimitCountsOuput,
+            exampleTitle: 'Success',
+            exampleDescription: '예약 가능 인원 요일&시간별 설정 리스트'
+        }
+    ])
+    async getReservationLimitCounts(): Promise<void> {
+        //
+    }
+
+    @Post('limitcounts')
+    @Roles(['Admin'])
+    @ApiOperation({ summary: '예약 가능 인원 저장' })
+    @ApiOkResponse()
+    async updateReservationLimitCounts(@Body() createProductInput: UpdateReservationLimitCountsInput): Promise<void> {
+        //
+    }
+
+    @Get('availabletimes')
+    @ApiOperation({ summary: '예약 가능 시간 조회' })
+    @SuccessResponse(HttpStatus.OK, [
+        {
+            model: GetAvailableTimesOuput,
+            exampleTitle: 'Success',
+            exampleDescription: '예약 가능한 시간 조회'
+        }
+    ])
+    async getAvailableTimes(@Query() getAvailableTimesInput: GetAvailableTimesInput): Promise<void> {
         //
     }
 }

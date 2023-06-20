@@ -18,9 +18,10 @@
     + 예약 상품 -> JSON 형태로 저장
 3. Chart (=Client)
 4. Timetable: 예약 날짜 및 시간 관리
-    + 예약 가능 인원수 설정
+    + CRM :: GET 요일&시간별 인원 제한 리스트 /reservations/limitcounts
+    + CRM :: POST 요일&시간별 인원 제한 저장 /reservation/limitcounts
+    + Client :: GET 해당 날짜 예약 가능 인원 /reservation/time/20230620
     + 휴무일 설정
-    + 날짜에 따른 예약 가능한 시간 조회
 
 ---
 

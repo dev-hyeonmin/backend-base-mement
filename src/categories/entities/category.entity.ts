@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { CoreEntity } from 'src/common/entities/core.entity';
 import { Product } from 'src/products/entities/product.entity';
-import { Timetable } from 'src/timetable/entities/timetable.entity';
+import { ReservationLimitCount } from 'src/reservation/entities/reservationLimitCount.entity';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
@@ -22,6 +22,6 @@ export class Category extends CoreEntity {
     @OneToMany(() => Product, (product) => product.category)
     products?: Product[];
 
-    @OneToMany(() => Timetable, (timetable) => timetable.category)
-    timetables?: Timetable[];
+    @OneToMany(() => ReservationLimitCount, (count) => count.category)
+    limitCounts?: ReservationLimitCount[];
 }

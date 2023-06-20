@@ -16,7 +16,7 @@ export enum Week {
 
 
 @Entity()
-export class Timetable extends CoreEntity {
+export class ReservationLimitCount extends CoreEntity {
     @Column({ type: 'enum', enum: Week, default: Week.Sunday })
     @ApiProperty({
         description: '요일 [0-6] / 일요일 시작',
@@ -41,10 +41,10 @@ export class Timetable extends CoreEntity {
     })
     count: number;
 
-    @ManyToOne(() => Category, (category) => category.timetables)
+    @ManyToOne(() => Category, (category) => category.limitCounts)
     @JoinColumn()
     category: Category;
 
-    @RelationId((timetable: Timetable) => timetable.category)
+    @RelationId((count: ReservationLimitCount) => count.category)
     categoryId: number;
 }
