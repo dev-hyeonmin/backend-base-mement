@@ -6,6 +6,7 @@ import { getReservationSchema, getReservationsSchema } from './dtos/schema.dto';
 import { CreateReservationsInput, GetReservationsInput, UpdateReservationsInput } from './dtos/reservation.dto';
 import { GetAvailableTimesInput, GetAvailableTimesOuput, GetReservationLimitCountsOuput, UpdateReservationLimitCountsInput } from './dtos/reservationLimitCount.dto';
 import { Roles } from 'src/auth/roles.decorator';
+import { CreateHolidayInput, GetHolidaysOuput } from './dtos/holiday.dto';
 
 @ApiTags('reservation')
 @Controller('reservation')
@@ -99,6 +100,29 @@ export class ReservationController {
         }
     ])
     async getAvailableTimes(@Query() getAvailableTimesInput: GetAvailableTimesInput): Promise<void> {
+        //
+    }
+
+    /*
+     * Holiday
+    */
+    @Get('holiday')
+    @ApiOperation({ summary: '휴무일 조회' })
+    @SuccessResponse(HttpStatus.OK, [
+        {
+            model: GetHolidaysOuput,
+            exampleTitle: 'Success',
+            exampleDescription: ''
+        }
+    ])
+    async getHolidays(): Promise<void> {
+        //
+    }
+
+    @Post('holiday')
+    @ApiOperation({ summary: '휴무일 저장' })
+    @ApiOkResponse()
+    async createHoliday(@Body() createHolidayInput: CreateHolidayInput): Promise<void> {
         //
     }
 }

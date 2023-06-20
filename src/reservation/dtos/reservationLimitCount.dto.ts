@@ -44,10 +44,10 @@ class GetAvailableTimesOuputExample {
 
     @ApiProperty({
         type: Boolean,
-        description: '카테고리별 예약 가능 여부 / categoryId는 숫자로 표기',
+        description: '카테고리 ID 값입니다.',
         example: true,
     })
-    categoryId: boolean
+    10: boolean
 }
 
 export class GetAvailableTimesOuput {

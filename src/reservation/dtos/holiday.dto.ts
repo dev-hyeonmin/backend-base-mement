@@ -1,5 +1,5 @@
-import { ApiProperty, PartialType, PickType } from "@nestjs/swagger";
-import { Holiday } from "../entities/holiday.entity";
+import { ApiProperty } from "@nestjs/swagger"
+import { Holiday } from "../entities/holiday.entity"
 
 export class GetHolidaysOuput {
     @ApiProperty({
