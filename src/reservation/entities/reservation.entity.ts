@@ -2,7 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { Chart } from 'src/charts/entities/chart.entity';
 import { CoreEntity } from 'src/common/entities/core.entity';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Payment } from 'src/payments/entities/payment.entity';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 export enum ReservationStatus {
     Reserve = 'Reserve', // 예약
@@ -50,4 +51,7 @@ export class Reservation extends CoreEntity {
 
     @ManyToOne(() => Chart, (chart) => chart.reservations)
     chart: Chart;
+
+    @OneToMany(() => Payment, (payment) => payment.reservation)
+    payments?: Payment[];
 }

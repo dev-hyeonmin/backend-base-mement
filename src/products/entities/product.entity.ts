@@ -3,8 +3,9 @@ import { IsNotEmpty } from 'class-validator';
 import { Category } from 'src/categories/entities/Category.entity';
 import { CoreEntity } from 'src/common/entities/core.entity';
 import { Procedure } from 'src/procedures/entities/Procedure.entity';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
 import { ProductProcedures } from './product_procedures.entity';
+import { PaymentProduct } from 'src/payments/entities/payment_product.entity';
 
 /*
  * 상품명, 상품설명, 이벤트 상품 여부, 삭제 플래그
@@ -75,4 +76,7 @@ export class Product extends CoreEntity {
 
     @ManyToOne(() => ProductProcedures, pro => pro.products)
     productProcedures: ProductProcedures[]
+
+    @OneToMany(() => PaymentProduct, (paymentProduct) => paymentProduct.product)
+    paymentProducts?: PaymentProduct[];
 }

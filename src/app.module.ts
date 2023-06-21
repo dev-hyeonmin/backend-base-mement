@@ -28,6 +28,9 @@ import { Category } from './categories/entities/Category.entity';
 import { ReservationLimitCount } from './reservation/entities/reservationLimitCount.entity';
 import { Holiday } from './reservation/entities/holiday.entity';
 import { ProductProcedures } from './products/entities/product_procedures.entity';
+import { PaymentsModule } from './payments/payments.module';
+import { Payment } from './payments/entities/payment.entity';
+import { PaymentProduct } from './payments/entities/payment_product.entity';
 
 @Module({
     imports: [
@@ -44,8 +47,22 @@ import { ProductProcedures } from './products/entities/product_procedures.entity
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
             synchronize: true,
-            entities: [User, Verification, Chart, Reservation, MarketingAgree, Product, Procedure, ProductProcedures, Category, ReservationLimitCount, Holiday],
-        }),
+            entities: [
+                User,
+                Verification,
+                Chart,
+                Reservation,
+                MarketingAgree,
+                Product,
+                Procedure,
+                ProductProcedures,
+                Category,
+                ReservationLimitCount,
+                Holiday,
+                Payment,
+                PaymentProduct
+            ],
+            }),
         TokenModule.forRoot({
             privateKey: process.env.PRIVATE_KEY,
             expiresIn: process.env.EXPIRESIN,
@@ -71,6 +88,7 @@ import { ProductProcedures } from './products/entities/product_procedures.entity
         ChartsModule,
         ProceduresModule,
         CategoriesModule,
+        PaymentsModule,
     ],
     controllers: [],
     providers: [],
