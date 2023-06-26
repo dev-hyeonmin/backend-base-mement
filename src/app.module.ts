@@ -31,6 +31,8 @@ import { ProductProcedures } from './products/entities/product_procedures.entity
 import { PaymentsModule } from './payments/payments.module';
 import { Payment } from './payments/entities/payment.entity';
 import { PaymentProduct } from './payments/entities/payment_product.entity';
+import { EventsModule } from './events/events.module';
+import { EventGroup } from './events/entities/eventGroup.entity';
 
 @Module({
     imports: [
@@ -60,7 +62,8 @@ import { PaymentProduct } from './payments/entities/payment_product.entity';
                 ReservationLimitCount,
                 Holiday,
                 Payment,
-                PaymentProduct
+                PaymentProduct,
+                EventGroup
             ],
             }),
         TokenModule.forRoot({
@@ -89,6 +92,7 @@ import { PaymentProduct } from './payments/entities/payment_product.entity';
         ProceduresModule,
         CategoriesModule,
         PaymentsModule,
+        EventsModule,
     ],
     controllers: [],
     providers: [],
