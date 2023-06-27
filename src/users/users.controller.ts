@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Put, Req, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Req, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import {
     CreateAccountInput,
@@ -102,5 +102,11 @@ export class UsersController {
     ): Promise<UpdateAccountOutput> {
         const result = await this.userService.updateAccount(data);
         return result;
+    }
+
+    @Delete(':id')
+    @ApiOperation({ summary: '사용자 삭제' })
+    remove(@Param('id') id: string) {
+        //
     }
 }

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { CoreEntity } from 'src/common/entities/core.entity';
+import { PaymentProduct } from 'src/payments/entities/payment_product.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { ReservationLimitCount } from 'src/reservation/entities/reservationLimitCount.entity';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
@@ -24,4 +25,7 @@ export class Category extends CoreEntity {
 
     @OneToMany(() => ReservationLimitCount, (count) => count.category)
     limitCounts?: ReservationLimitCount[];
+
+    @OneToMany(() => PaymentProduct, (paymentProduct) => paymentProduct.productCategory)
+    paymentProducts?: PaymentProduct[];
 }

@@ -33,6 +33,7 @@ import { Payment } from './payments/entities/payment.entity';
 import { PaymentProduct } from './payments/entities/payment_product.entity';
 import { EventsModule } from './events/events.module';
 import { EventGroup } from './events/entities/eventGroup.entity';
+import { EventCha } from './events/entities/eventCha.entity';
 
 @Module({
     imports: [
@@ -63,7 +64,8 @@ import { EventGroup } from './events/entities/eventGroup.entity';
                 Holiday,
                 Payment,
                 PaymentProduct,
-                EventGroup
+                EventCha,
+                EventGroup,
             ],
             }),
         TokenModule.forRoot({

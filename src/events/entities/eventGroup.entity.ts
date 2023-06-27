@@ -2,32 +2,28 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { CoreEntity } from 'src/common/entities/core.entity';
 import { Product } from 'src/products/entities/product.entity';
-import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
-
-export enum ReservationStatus {
-    Reserve = 'Reserve', // 예약
-    Regist = 'Regist', // 접수
-    Complete = 'Complete', // 완료
-    Cancel = 'Cancel', // 취소
-}
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity()
 export class EventGroup extends CoreEntity {
-    @Column({type: Date})
+    @Column({type: String})
     @IsNotEmpty()
     @ApiProperty({
         type: String,
         description: '이벤트명',
         example: '[이벤트] Allergan Botox 타이트닝',
     })
-    name: Date;
+    name: string;
 
-    @ManyToMany(type => Product, { eager: true })
+    @ManyToMany(type => Product, { eager: true, onDelete: 'CASCADE' })
     @JoinTable({ name: 'event_group_products' })
     @ApiProperty({
         type: [Product],
         description: '상품 배열',
         example: [],
-    }) 
-    products: Product[]
+    })
+    products: Product[];
+
+    // @ManyToOne(() => EventCha, cha => cha.groups)
+    // cha: EventCha;
 }

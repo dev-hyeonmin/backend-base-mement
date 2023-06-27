@@ -36,3 +36,4 @@ export class UpdateEventGroupInput extends PickType(PartialType(EventGroup), ['n
     })
     products: number[];
 }
+
