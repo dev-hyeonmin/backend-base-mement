@@ -1,12 +1,13 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
-import { CreateCategoryInput, GetCategoriesInput, UpdateCategoryInput, getCategoryOutput, getCategoriesOutput } from './dtos/category.dto';
+import { CreateCategoryInput, UpdateCategoryInput, getCategoryOutput, getCategoriesOutput } from './dtos/category.dto';
+import { CategoriesService } from './categories.service';
 
 @ApiTags('categories')
 @Controller('categories')
 export class CategoriesController {
-    constructor() { }
+    constructor(private readonly categoryService: CategoriesService) { }
 
     @Get()
     @ApiOperation({ summary: '카테고리 리스트 조회' })
@@ -17,8 +18,8 @@ export class CategoriesController {
             exampleDescription: ''
         }
     ])
-    async getCategories(@Query() getCategoriesInput: GetCategoriesInput): Promise<void> {
-        //
+    async getCategories(): Promise<getCategoriesOutput> {
+        return await this.categoryService.getCategories();
     }
 
     @Get(":id")

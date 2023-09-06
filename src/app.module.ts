@@ -27,13 +27,12 @@ import { CategoriesModule } from './categories/categories.module';
 import { Category } from './categories/entities/Category.entity';
 import { ReservationLimitCount } from './reservation/entities/reservationLimitCount.entity';
 import { Holiday } from './reservation/entities/holiday.entity';
-import { ProductProcedures } from './products/entities/product_procedures.entity';
 import { PaymentsModule } from './payments/payments.module';
 import { Payment } from './payments/entities/payment.entity';
 import { PaymentProduct } from './payments/entities/payment_product.entity';
 import { EventsModule } from './events/events.module';
 import { EventGroup } from './events/entities/eventGroup.entity';
-import { EventCha } from './events/entities/eventCha.entity';
+import { EventCha } from './events/entities/eventCha.entity'; 
 
 @Module({
     imports: [
@@ -58,7 +57,6 @@ import { EventCha } from './events/entities/eventCha.entity';
                 MarketingAgree,
                 Product,
                 Procedure,
-                ProductProcedures,
                 Category,
                 ReservationLimitCount,
                 Holiday,

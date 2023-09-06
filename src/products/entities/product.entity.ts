@@ -4,7 +4,6 @@ import { Category } from 'src/categories/entities/Category.entity';
 import { CoreEntity } from 'src/common/entities/core.entity';
 import { Procedure } from 'src/procedures/entities/Procedure.entity';
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
-import { ProductProcedures } from './product_procedures.entity';
 
 /*
  * 상품명, 상품설명, 이벤트 상품 여부, 삭제 플래그
@@ -71,8 +70,5 @@ export class Product extends CoreEntity {
         description: '시술 배열',
         example: [],
     })
-    procedures: Procedure[]
-
-    @ManyToOne(() => ProductProcedures, pro => pro.products)
-    productProcedures: ProductProcedures[]    
+    procedures: Procedure[] 
 }

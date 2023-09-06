@@ -1,6 +1,5 @@
 import { ApiProperty, PartialType, PickType } from "@nestjs/swagger";
 import { Product } from "../entities/product.entity";
-import { ProductProcedures } from "../entities/product_procedures.entity";
 
 export class GetProductsInput extends PickType(PartialType(Product), ['name']) {}
 
@@ -22,7 +21,7 @@ export class getProductOutput {
 
 export class CreateProductInput extends PickType(PartialType(Product), ['name', 'description', 'price']) {
     @ApiProperty({ 
-        type: [ProductProcedures],
+        type: [],
         description: '시술 ID 배열',
         example: [
             {
@@ -31,7 +30,7 @@ export class CreateProductInput extends PickType(PartialType(Product), ['name', 
             },
         ],
     })
-    procedures: ProductProcedures[];
+    procedures: [];
 }
 
 export class UpdateProductInput extends PickType(PartialType(Product), ['name', 'description', 'price']) {
