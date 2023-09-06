@@ -2,28 +2,25 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { EventsService } from './events.service';
 import { CreateEventGroupInput, GetEventGroupsInput, UpdateEventGroupInput } from './dtos/eventGroup.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateEventChaInput } from './dtos/eventCha.dto';
+import { CreateEventDegreeInput, getEventDegreeOutput } from './dtos/eventDegree.dto';
 
 @ApiTags('events')
 @Controller('events')
 export class EventsController {
-    constructor(private readonly eventsService: EventsService) { }
+    constructor(
+        private readonly eventsService: EventsService
+    ) { }
 
-    @Post('cha')
+    @Post('degrees')
     @ApiOperation({ summary: '이벤트 차수 생성 / 수정' })
-    createEventCha(@Body() createEventChaInput: CreateEventChaInput) {
-        //
+    async createEventDegree(@Body() createEventDegreeInput: CreateEventDegreeInput) {      
+        return await this.eventsService.createEventDegree(createEventDegreeInput);
     }
 
-    @Get('cha')
+    @Get('degrees/:chainId') 
     @ApiOperation({ summary: '이벤트 차수 리스트' })
-    getEventChaList() {
-        //
-    }
-
-    @Get('cha/:type') 
-    getEventCha(@Param('type') type: string) {
-        //
+    async getEventDegree(@Param('chainId') chainId: string):Promise<getEventDegreeOutput> {        
+        return await this.eventsService.getEventDegree();
     }
 
     /**

@@ -32,7 +32,9 @@ import { Payment } from './payments/entities/payment.entity';
 import { PaymentProduct } from './payments/entities/payment_product.entity';
 import { EventsModule } from './events/events.module';
 import { EventGroup } from './events/entities/eventGroup.entity';
-import { EventCha } from './events/entities/eventCha.entity'; 
+import { EventDegree } from './events/entities/eventDegree.entity'; 
+import { BranchModule } from './branch/branch.module';
+import { Branch } from './branch/entities/branch.entity';
 
 @Module({
     imports: [
@@ -62,8 +64,9 @@ import { EventCha } from './events/entities/eventCha.entity';
                 Holiday,
                 Payment,
                 PaymentProduct,
-                EventCha,
+                EventDegree,
                 EventGroup,
+                Branch
             ],
             }),
         TokenModule.forRoot({
@@ -93,6 +96,7 @@ import { EventCha } from './events/entities/eventCha.entity';
         CategoriesModule,
         PaymentsModule,
         EventsModule,
+        BranchModule,
     ],
     controllers: [],
     providers: [],
