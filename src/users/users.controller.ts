@@ -1,22 +1,22 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Req, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { ApiOperation, ApiSecurity } from '@nestjs/swagger';
+import { AuthUser } from 'src/auth/auth-user.decorator';
+import { Roles } from 'src/auth/roles.decorator';
+import { UserNotFoundException } from 'src/common/errors';
+import { USER_NOT_FOUND } from 'src/common/errors.constants';
+import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
+import { ErrorResponse } from 'src/common/swagger/errorResponse.decorator';
 import {
     CreateAccountInput,
     CreateAccountOutput,
     LoginInput,
     LoginOutput,
+    UpdateAccountInput,
+    UpdateAccountOutput,
     UserProfileOutput,
 } from './dtos/users.dto';
-import { UpdateAccountInput } from './dtos/users.dto';
-import { UpdateAccountOutput } from './dtos/users.dto';
-import { VerifyEmailOutput } from './dtos/verify-email.dto';
-import { SuccessResponse } from 'src/common/swagger/SuccessResponse.decorator';
-import { ApiOkResponse, ApiOperation, ApiSecurity } from '@nestjs/swagger';
-import { ErrorResponse } from 'src/common/swagger/errorResponse.decorator';
-import { UserNotFoundException } from 'src/common/errors';
-import { USER_NOT_FOUND } from 'src/common/errors.constants';
-import { Roles } from 'src/auth/roles.decorator';
 import { User } from './entities/user.entity';
+import { UsersService } from './users.service';
 
 /*
  * GET    : getting data
@@ -33,6 +33,14 @@ export class UsersController {
     // async verifyEmail(@Req() data: any): Promise<VerifyEmailOutput> {
     //     return this.userService.verifyEmail(data.query.code);
     // }
+
+    @Get()
+    @Roles(['Any'])
+    @ApiSecurity('x-jwt')
+    async me(@AuthUser() authUser: User): Promise<UserProfileOutput> {
+        const result = await this.userService.userFindById(authUser.id);
+        return result;
+    }
 
     @Get(':id')
     @Roles(['Any'])

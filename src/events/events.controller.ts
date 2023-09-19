@@ -17,10 +17,10 @@ export class EventsController {
         return await this.eventsService.createEventDegree(createEventDegreeInput);
     }
 
-    @Get('degrees/:chainId') 
+    @Get('degrees/:branchId') 
     @ApiOperation({ summary: '이벤트 차수 리스트' })
-    async getEventDegree(@Param('chainId') chainId: string):Promise<getEventDegreeOutput> {        
-        return await this.eventsService.getEventDegree();
+    async getEventDegree(@Param('branchId') branchId: string):Promise<getEventDegreeOutput> {        
+        return await this.eventsService.getEventDegree(+branchId);
     }
 
     /**

@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { Category } from 'src/categories/entities/Category.entity';
 import { CoreEntity } from 'src/common/entities/core.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, RelationId } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
 
 export enum Week {
     Sunday = 0,

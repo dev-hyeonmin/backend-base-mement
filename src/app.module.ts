@@ -4,37 +4,38 @@ import {
     NestModule,
     RequestMethod,
 } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { TokenModule } from './token/token.module';
-import { TokenMiddleware } from './token/token.middleware';
-import { MailModule } from './mail/mail.module';
-import { Verification } from './users/entities/verification.entity';
-import { WebsocketsModule } from './websockets/websockets.module';
-import { ProductsModule } from './products/products.module';
-import { ReservationModule } from './reservation/reservation.module';
-import { Reservation } from './reservation/entities/reservation.entity';
+import { BranchModule } from './branch/branch.module';
+import { BranchInfo } from './branch/entities/branch-info.entity';
+import { Branch } from './branch/entities/branch.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/entities/Category.entity';
 import { ChartsModule } from './charts/charts.module';
 import { Chart } from './charts/entities/chart.entity';
 import { MarketingAgree } from './charts/entities/marketingAgree.entity';
-import { Product } from './products/entities/product.entity';
-import { ProceduresModule } from './procedures/procedures.module';
-import { Procedure } from './procedures/entities/Procedure.entity';
-import { CategoriesModule } from './categories/categories.module';
-import { Category } from './categories/entities/Category.entity';
-import { ReservationLimitCount } from './reservation/entities/reservationLimitCount.entity';
-import { Holiday } from './reservation/entities/holiday.entity';
-import { PaymentsModule } from './payments/payments.module';
+import { EventDegree } from './events/entities/eventDegree.entity';
+import { EventGroup } from './events/entities/eventGroup.entity';
+import { EventsModule } from './events/events.module';
+import { MailModule } from './mail/mail.module';
 import { Payment } from './payments/entities/payment.entity';
 import { PaymentProduct } from './payments/entities/payment_product.entity';
-import { EventsModule } from './events/events.module';
-import { EventGroup } from './events/entities/eventGroup.entity';
-import { EventDegree } from './events/entities/eventDegree.entity'; 
-import { BranchModule } from './branch/branch.module';
-import { Branch } from './branch/entities/branch.entity';
+import { PaymentsModule } from './payments/payments.module';
+import { Procedure } from './procedures/entities/Procedure.entity';
+import { ProceduresModule } from './procedures/procedures.module';
+import { Product } from './products/entities/product.entity';
+import { ProductsModule } from './products/products.module';
+import { Holiday } from './reservation/entities/holiday.entity';
+import { Reservation } from './reservation/entities/reservation.entity';
+import { ReservationLimitCount } from './reservation/entities/reservationLimitCount.entity';
+import { ReservationModule } from './reservation/reservation.module';
+import { TokenMiddleware } from './token/token.middleware';
+import { TokenModule } from './token/token.module';
+import { User } from './users/entities/user.entity';
+import { Verification } from './users/entities/verification.entity';
+import { UsersModule } from './users/users.module';
+import { WebsocketsModule } from './websockets/websockets.module';
 
 @Module({
     imports: [
@@ -66,7 +67,8 @@ import { Branch } from './branch/entities/branch.entity';
                 PaymentProduct,
                 EventDegree,
                 EventGroup,
-                Branch
+                Branch,
+                BranchInfo
             ],
             }),
         TokenModule.forRoot({

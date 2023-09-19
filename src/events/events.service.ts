@@ -22,7 +22,7 @@ export class EventsService {
             }
 
             const degreeData = await this.eventDegrees.findOneBy({ degree });
-            
+
             if (title) {
                 degreeData.title = title;
             }
@@ -50,9 +50,9 @@ export class EventsService {
         }
     }
 
-    async getEventDegree(): Promise<getEventDegreeOutput> {
+    async getEventDegree(branchId: number): Promise<getEventDegreeOutput> {
         try {
-            const eventDegrees = await this.eventDegrees.find({});
+            const eventDegrees = await this.eventDegrees.findBy({ branchId });
             return { eventDegrees };
         } catch (error) {
             throw error;
